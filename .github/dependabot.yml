@@ -10,6 +10,32 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 10
+    groups:
+      spring-dependencies:
+        patterns:
+          - "org.springframework*"
+          - "aopalliance*"
+          - "org.aspectj*"
+        update-types:
+          - "patch"
+    ignore:
+      # Block major versions for all dependencies
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
+      # Block minor versions except for Spring (handled by group above)
+      - dependency-name: '*'
+        update-types: ['version-update:semver-minor']
+      # Explicitly block major framework updates that need coordination
+      - dependency-name: 'org.jboss.resteasy:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.wildfly:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.springframework:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'junit:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.eclipse.jetty:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
   - package-ecosystem: "github-actions"
     # Workflow files stored in the
     # default location of `.github/workflows`
@@ -30,11 +56,24 @@ updates:
           - "aopalliance*"
           - "org.aspectj*"
         update-types:
-          - "minor"
           - "patch"
     ignore:
-      # We only want patch release upgrades
+      # Block major versions for all dependencies
       - dependency-name: '*'
+        update-types: ['version-update:semver-major']
+      # Block minor versions except for Spring (handled by group above)
+      - dependency-name: '*'
+        update-types: ['version-update:semver-minor']
+      # Explicitly block major framework updates that need coordination
+      - dependency-name: 'org.jboss.resteasy:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.wildfly:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.springframework:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'junit:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.eclipse.jetty:*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
   - package-ecosystem: "github-actions"
     # Workflow files stored in the
