@@ -19,22 +19,26 @@ updates:
         update-types:
           - "patch"
     ignore:
-      # Block major versions for all dependencies
-      - dependency-name: '*'
-        update-types: ['version-update:semver-major']
-      # Block minor versions except for Spring (handled by group above)
-      - dependency-name: '*'
-        update-types: ['version-update:semver-minor']
-      # Explicitly block major framework updates that need coordination
+      # Only block runtime dependencies - allow all updates for parent POM and plugins
+      # Block major framework updates that need coordination
       - dependency-name: 'org.jboss.resteasy:*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
-      - dependency-name: 'org.wildfly:*'
+      - dependency-name: 'org.wildfly:wildfly-*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
       - dependency-name: 'org.springframework:*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
-      - dependency-name: 'junit:*'
-        update-types: ['version-update:semver-major', 'version-update:semver-minor']
       - dependency-name: 'org.eclipse.jetty:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'jakarta.ws.rs:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'jakarta.servlet:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      # Block other runtime dependencies from major/minor updates
+      - dependency-name: 'org.jboss.logging:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.apache.logging.log4j:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.reactivestreams:*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
   - package-ecosystem: "github-actions"
     # Workflow files stored in the
@@ -58,22 +62,26 @@ updates:
         update-types:
           - "patch"
     ignore:
-      # Block major versions for all dependencies
-      - dependency-name: '*'
-        update-types: ['version-update:semver-major']
-      # Block minor versions except for Spring (handled by group above)
-      - dependency-name: '*'
-        update-types: ['version-update:semver-minor']
-      # Explicitly block major framework updates that need coordination
+      # Only block runtime dependencies - allow all updates for parent POM and plugins
+      # Block major framework updates that need coordination
       - dependency-name: 'org.jboss.resteasy:*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
-      - dependency-name: 'org.wildfly:*'
+      - dependency-name: 'org.wildfly:wildfly-*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
       - dependency-name: 'org.springframework:*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
-      - dependency-name: 'junit:*'
-        update-types: ['version-update:semver-major', 'version-update:semver-minor']
       - dependency-name: 'org.eclipse.jetty:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'jakarta.ws.rs:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'jakarta.servlet:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      # Block other runtime dependencies from major/minor updates
+      - dependency-name: 'org.jboss.logging:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.apache.logging.log4j:*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: 'org.reactivestreams:*'
         update-types: ['version-update:semver-major', 'version-update:semver-minor']
   - package-ecosystem: "github-actions"
     # Workflow files stored in the
